@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Технологии{% endblock %}
+{% block content %}
+  <div class="container py-5">
+    {% comment %} Колонки с отступом сверху и снизу {% endcomment %}
+    <div class="row">
+      <h1>Примененные технологии</h1>
+      {% comment %}
+        Боковой блок со списком технологий
+        Займет всю ширину блока на мобильном
+        и 25% при размерах экрана ≥768px
+      {% endcomment %}
+      <aside class="col-12 col-md-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Python
+          </li>
+          <li class="list-group-item">
+            Django
+          </li>
+        </ul>
+      </aside>
+      {% comment %}
+        Статья
+        Займет всю ширину блока на мобильном
+        и 75% при размерах экрана ≥768px
+      {% endcomment %}
+      <article class="col-12 col-md-9">
+        <p>В ходе создания проекта, я познакомился с IDE Visual Studio Code, до этого я пробовал писать только в
+          PyCharm,
+          но VS Code показала мне более дружелюбной, хотя режим отладки все же лучше в PyCharm.</p>
+      </article>
+    </div>
+  </div>
+{% endblock %}

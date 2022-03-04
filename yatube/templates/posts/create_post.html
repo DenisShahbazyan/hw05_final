@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+  {% if is_edit %}
+    Редактировать пост
+  {% else %}
+    Новый пост
+  {% endif %}
+{% endblock %}
+{% block content %}
+  {% load user_filters %}
+  <main>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+          <div class="card">
+            <div class="card-header">
+              {% if is_edit %}
+                Редактирование поста
+              {% else %}
+                Новый пост
+              {% endif %}
+            </div>
+            <div class="card-body">
+
+              <form method="post" {% if is_edit %} action="{% url 'posts:post_edit' post.id %}" {% else %} action="{% url 'posts:post_create' %}" {% endif %} enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group row my-3 p-3">
+                  <label title="{{ form.text.help_text }}" for="id_text">
+                    Текст поста
+                    <span class="required text-danger">*</span>
+                  </label>
+                  {{ form.text|addclass:'form-control' }}
+                  <small id="id_text-help" class="form-text text-muted">
+                    Текст нового поста
+                  </small>
+                </div>
+
+                <div class="form-group row my-3 p-3">
+                  <label title="{{ form.group.help_text }}" for="id_group">
+                    Группа
+                  </label>
+                  {{ form.group|addclass:'form-control' }}
+                  <small id="id_group-help" class="form-text text-muted">
+                    Группа, к которой будет относиться пост
+                  </small>
+                </div>
+
+                <div class="form-group row my-3 p-3">
+                  <label title="{{ form.image.help_text }}" for="image">
+                    Картинка
+                  </label>
+                  {{ form.image|addclass:'form-control' }}
+                  <small id="image-help" class="form-text text-muted">
+                    Картинка, прикрепленная к посту
+                  </small>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary">
+                    {% if is_edit %}
+                      Редактировать
+                    {% else %}
+                      Сохранить
+                    {% endif %}
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
